@@ -27,4 +27,4 @@ You can install the development version of **leafMeAlone** from GitHub:
 install.packages("devtools")
 
 # Install leafMeAlone
-devtools::install_github("yourgithubusername/leafMeAlone")
+devtools::install_github("MadhuraSaha02/leafMeAlone")
