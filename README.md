@@ -16,6 +16,8 @@ It provides tools to:
  ![image](https://github.com/user-attachments/assets/a8a56294-2409-41a1-a023-b66c594bd0bc)
 
 - Detect tree canopy gain or loss over time
+  file:///C:/Eagle%20(SEM3)/Package/leafMeAlone/R/canopy%20change.html
+  
 - Analyze autumn onset from NDVI timeseries
 - Create interactive **leaflet maps** 🌍 and **animations** 📽️
 - Generate beautiful **HTML reports** automatically
