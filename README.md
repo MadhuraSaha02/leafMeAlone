@@ -16,6 +16,7 @@ It provides tools to:
  ![image](https://github.com/user-attachments/assets/a8a56294-2409-41a1-a023-b66c594bd0bc)
 
 - Detect tree canopy gain or loss over time
+  
   ![image](https://github.com/user-attachments/assets/84676d20-33dd-44cc-90ef-8d4f20a93adf)
 
   
