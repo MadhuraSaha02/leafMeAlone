@@ -25,7 +25,7 @@ It provides tools to:
 - Generate beautiful **HTML reports** automatically
 
 ---Errors:
-still correcting the phenology errors
+still correcting the phenology errors since on onset map available for those dates
 
 ## 📦 Installation
 
