@@ -24,7 +24,8 @@ It provides tools to:
 - Create interactive **leaflet maps** 🌍 and **animations** 📽️
 - Generate beautiful **HTML reports** automatically
 
----
+---Errors:
+still correcting the phenology errors
 
 ## 📦 Installation
 
