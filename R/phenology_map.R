@@ -7,14 +7,18 @@
 #'
 #' @return A RasterLayer representing the autumn onset day of year.
 #' @export
-phenology_map <- function(ndvi_stack, date_vector) {
-  onset_map <- terra::app(ndvi_stack, fun = function(ts) {
-    if (all(is.na(ts))) return(NA)
-    smooth_ts <- zoo::rollmean(ts, k = 3, fill = NA)
-    onset_idx <- which.min(diff(smooth_ts))
-    if (length(onset_idx) == 0) return(NA)
-    as.numeric(format(as.Date(date_vector[onset_idx]), "%j"))
-  })
-  names(onset_map) <- "autumn_onset"
-  return(onset_map)
+phenology_map <- function(onset_map) {
+  if (is.null(onset_map) || terra::is.empty(onset_map)) {
+    warning("onset_map is empty or invalid; cannot plot.")
+    return(NULL)
+  }
+
+  pal <- colorNumeric(palette = "YlOrRd", domain = values(onset_map), na.color = "transparent")
+
+  leaflet() %>%
+    addTiles() %>%
+    addRasterImage(onset_map, colors = pal, opacity = 0.8) %>%
+    addLegend(pal = pal, values = values(onset_map),
+              title = "Autumn Onset DOY") %>%
+    setView(lng = mean(ext(onset_map)[1:2]), lat = mean(ext(onset_map)[3:4]), zoom = 10)
 }
