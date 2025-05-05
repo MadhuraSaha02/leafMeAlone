@@ -10,9 +10,25 @@
 #'   - `ndvi_curve`: A data frame with dates, NDVI, and smoothed NDVI.
 #' @export
 extract_phenology_metrics <- function(ndvi_ts, dates) {
-  df <- data.frame(date = as.Date(dates), ndvi = ndvi_ts)
+  if (all(is.na(ndvi_ts)) || length(ndvi_ts) < 3) {
+    return(list(autumn_onset_doy = NA, ndvi_curve = data.frame(date = dates, ndvi = ndvi_ts)))
+  }
+
+  df <- data.frame(date = dates, ndvi = ndvi_ts)
   df$doy <- as.numeric(format(df$date, "%j"))
-  df$ndvi_smooth <- zoo::rollmean(df$ndvi, k = 3, fill = NA)
-  onset_idx <- which.min(diff(df$ndvi_smooth))
-  list(autumn_onset_doy = df$doy[onset_idx], ndvi_curve = df)
+  df$ndvi_smooth <- zoo::rollmean(df$ndvi, k = 3, fill = NA, align = "center")
+
+  if (all(is.na(df$ndvi_smooth))) {
+    return(list(autumn_onset_doy = NA, ndvi_curve = df))
+  }
+
+  d_ndvi <- diff(df$ndvi_smooth)
+  min_slope_idx <- which.min(d_ndvi)
+
+  if (length(min_slope_idx) == 0 || is.na(min_slope_idx)) {
+    return(list(autumn_onset_doy = NA, ndvi_curve = df))
+  }
+
+  autumn_onset_doy <- df$doy[min_slope_idx + 1]
+  return(list(autumn_onset_doy = autumn_onset_doy, ndvi_curve = df))
 }
