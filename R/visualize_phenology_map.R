@@ -7,7 +7,7 @@
 #'
 #' @return A RasterLayer representing the autumn onset day of year.
 #' @export
-phenology_map <- function(onset_map) {
+visualize_phenology_map <- function(onset_map) {
   if (is.null(onset_map) || terra::is.empty(onset_map)) {
     warning("onset_map is empty or invalid; cannot plot.")
     return(NULL)
@@ -22,3 +22,9 @@ phenology_map <- function(onset_map) {
               title = "Autumn Onset DOY") %>%
     setView(lng = mean(ext(onset_map)[1:2]), lat = mean(ext(onset_map)[3:4]), zoom = 10)
 }
+
+# Extract phenology metrics
+onset_map <- extract_phenology_raster(rast(c(ndvi_before, ndvi_after)), c(dates_before, dates_after))
+
+# Visualize the phenology map
+visualize_phenology_map(onset_map)
