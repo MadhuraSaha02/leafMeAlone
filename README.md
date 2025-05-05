@@ -20,12 +20,11 @@ It provides tools to:
   ![image](https://github.com/user-attachments/assets/84676d20-33dd-44cc-90ef-8d4f20a93adf)
 
   
+Future inclusion
 - Analyze autumn onset from NDVI timeseries
 - Create interactive **leaflet maps** 🌍 and **animations** 📽️
 - Generate beautiful **HTML reports** automatically
 
----Errors:
-still correcting the phenology errors since on onset map available for those dates
 
 ## 📦 Installation
 
